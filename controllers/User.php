@@ -741,7 +741,11 @@ curl_close($ch);
 		$response['msg'] = $user_account;
 		$response['wp_user_id'] = $user_id;
 		$response['cookie'] = $cookie;
-		$response['user_login'] = $user_name;	
+		$response['user_login'] = $user_name;
+        $jwtToken = apply_filters('generate_jwt_token_for_user', $user);
+        if(array_key_exists('token', $jwtToken)) {
+            $response['jwt'] = $jwtToken;
+        }
 		
 		}
 		else {
